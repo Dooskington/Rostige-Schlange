@@ -16,6 +16,8 @@ use input::*;
 use glutin::VirtualKeyCode;
 use time::*;
 
+pub const MAX_MOVE_FREQUENCY_MS: i64 = 30;
+pub const BASE_MOVE_FREQUENCY_MS: i64 = 100;
 pub const SPRITE_SNAKE: Sprite = Sprite { graphic: 1 as char, color: COLOR_WHITE };
 pub const SPRITE_FOOD: Sprite = Sprite { graphic: '$', color: COLOR_GREEN };
 
@@ -175,12 +177,21 @@ fn reset_game(game: &mut Game) {
 }
 
 fn collect_food(game: &mut Game) {
+    calc_move_frequency(game);
     reset_food(game);
     grow_snake(&mut game.snake);
-    game.score += 100;
+    game.score += 1;
+}
+
+fn calc_move_frequency(game: &mut Game) {
+    let mut move_frequency_ms: i64 = BASE_MOVE_FREQUENCY_MS - f32::powf(game.score as f32, 1.4) as i64;
+    move_frequency_ms = move_frequency_ms.max(MAX_MOVE_FREQUENCY_MS);
+    game.snake.move_frequency = time::Duration::milliseconds(move_frequency_ms);
 }
 
 fn game_over(game: &mut Game) {
+    game.food_position = None;
+    game.snake.move_frequency = time::Duration::milliseconds(BASE_MOVE_FREQUENCY_MS);
     game.snake.direction = Direction::None;
     game.state = GameState::GameOver;
 }
