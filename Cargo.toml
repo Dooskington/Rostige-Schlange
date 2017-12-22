@@ -1,0 +1,14 @@
+[package]
+name = "schlange"
+version = "0.1.0"
+authors = ["Declan Hopkins <hopkins.declan@gmail.com>"]
+
+[dependencies]
+gl = "*"
+libc = "*"
+glutin = "*"
+image = "*"
+nalgebra = "0.13.0"
+alga = "0.5.2"
+rand = "0.3"
+time = "0.1.38"
