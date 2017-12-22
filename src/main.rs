@@ -60,8 +60,6 @@ impl Snake {
 fn grow_snake(snake: &mut Snake) {
     let head = snake.segments.first().unwrap().clone();
     snake.segments.push(head);
-
-    println!("segment add");
 }
 
 pub struct Game {
@@ -100,7 +98,7 @@ impl Coordinates {
 }
 
 fn main() {
-    let window_title: &str = "Schlange";
+    let window_title: &str = "Rostige Schlange";
     let window_width: u32 = 30 * gfx::CELL_WIDTH;
     let window_height: u32 = 15 * gfx::CELL_HEIGHT;
 
