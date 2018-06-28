@@ -1,4 +1,5 @@
 # Rostige Schlange
-GPU accelerated snake, programmed in an evening using Rust.
+A simple snake game, built for learning purposes.
+Uses [glutin](https://github.com/tomaka/glutin) and [gl](https://github.com/brendanzab/gl-rs) for rendering. 
 
 ![Schlange](https://i.imgur.com/r9RbKAM.png)
