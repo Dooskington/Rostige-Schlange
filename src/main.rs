@@ -172,6 +172,7 @@ fn reset_snake(snake: &mut Snake) {
 
 fn reset_game(game: &mut Game) {
     reset_snake(&mut game.snake);
+    reset_food(game);
     game.score = 0;
     game.state = GameState::Playing;
 }
